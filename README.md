@@ -2,19 +2,18 @@
 lizihan
 ---
 
-# 0.Setup
-## 0.0 Things we are going to use:
+# 0. Setup
+## Things we are going to use:
 * XAMPP
 * Github (Desktop version)
 
-## 0.1 Language we are going to learn:
+## Language we are going to learn:
 * php (with sql, using mysql)
 * bootstrap (with HTML javascript css)
 
 Put files under xampp/htdocs to see results.
 
-# 1.Contents
-## 1.0 Static (dynamic) pages to show items
+# 1. Contents
 
 Things like:
 1. documents
