@@ -16,6 +16,7 @@ Put files under xampp/htdocs to see results.
 # 1. Contents
 
 Things like:
+
 1. documents
 2. calendar to show events
 3. home page profile of the organization
