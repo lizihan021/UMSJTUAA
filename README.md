@@ -21,15 +21,17 @@ Things like:
 + calendar to show events
 + home page profile of the organization
 + apply for UMSJTU-AA
+
     * login
     * fill forms
     * upload files
+    
 + chat?
 + management people
 
-	* login
-	* announcement
-	* profile
+    * login
+    * announcement
+    * profile
 	
 + email-sending
 + management tools
