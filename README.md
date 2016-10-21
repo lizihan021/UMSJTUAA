@@ -1,2 +1,0 @@
-# UMSJTUAA
-UM SJTU AA
