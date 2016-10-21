@@ -17,21 +17,19 @@ Put files under xampp/htdocs to see results.
 
 Things like:
 
-1. documents
-2. calendar to show events
-3. home page profile of the organization
-4. apply for UMSJTU-AA
++ documents
++ calendar to show events
++ home page profile of the organization
++ apply for UMSJTU-AA
+    * login
+    * fill forms
+    * upload files
++ chat?
++ management people
 
-	4.1 login
-	4.2 fill forms
-	4.3 upload files
+	* login
+	* announcement
+	* profile
 	
-5. chat?
-6. management people
-
-	6.1 login
-	6.2 announcement
-	6.3 profile
-	
-7. email-sending
-8. management tools
++ email-sending
++ management tools
