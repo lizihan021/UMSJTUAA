@@ -35,3 +35,8 @@ Things like:
 	
 + email-sending
 + management tools
+
+
+---
++ home page
++ management page
