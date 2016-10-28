@@ -26,9 +26,7 @@ class Test extends CI_Controller {
 
 	public function index()
 	{
-		echo 'yo';
 		$data['site_name'] = $this->db_model->get_site_name();
-		echo 'yo2';
 		$this->load->view('welcome_message',$data);
 
 	}

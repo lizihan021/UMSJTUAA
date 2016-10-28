@@ -26,10 +26,18 @@ class DB_Model extends CI_Model {
 
 	public function get_site_name()
 	{
-		echo 'yo3';
+		/*
 		$query = $this->db->get('aa_site_info');
 		foreach ($query->result() as $row)
+		{
 			echo $row->item.'<br> ';
-		return 'yo';
+		    echo $row->value.'<br> ';
+		}
+		$test = $query->result()[1]->value;
+		return $test;
+		*/
+		$query = $this->db->get_where('aa_site_info', array('item' => 'site_name'));
+
+		return $query->result()[0]->value;
 	}
 }
