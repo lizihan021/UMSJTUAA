@@ -8,7 +8,7 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 
-#application/config/database.php
+application/config/database.php
 
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
