@@ -15,7 +15,7 @@ class Test extends CI_Controller {
 	{
 
 		$data['site_name'] = $this->db_model->get_site_name();
-		$this->load->view('home');
+		$this->load->view('home', $data);
 
 
 	}
