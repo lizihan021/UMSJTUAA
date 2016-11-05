@@ -10,9 +10,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<!-- Bootstrap -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/bs/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="/bs/css/bootstrap.min.css">
+    <script src="/bs/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -30,8 +30,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <div class="col-sm-3">
       <h3>Column 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <p>Here should be the name of each departments...</p>
+      <p>Here are discription and links...</p>
     </div>
     <div class="col-sm-3">
       <h3>Column 3</h3> 
