@@ -5,9 +5,14 @@ class Manage extends CI_Controller {
 
 	public function __construct()
 	{
+		session_start();
+		if(!isset($_SESSION['user'])){
+			header("Location:/login");
+		}
 		parent::__construct();
+
 		$this->load->model('m_manage');
-		$this->load->helper('url');
+		
 		$this->output->enable_profiler(TRUE);
 	}
 
