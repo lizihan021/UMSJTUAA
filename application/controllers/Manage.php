@@ -10,7 +10,6 @@ class Manage extends CI_Controller {
 			header("Location:/login?url=".base64_encode($_SERVER["REQUEST_URI"]));
 		}
 		$this->load->model('m_manage');
-		
 		$this->output->enable_profiler(TRUE);
 	}
 
@@ -20,4 +19,6 @@ class Manage extends CI_Controller {
 		$this->load->view("test", $data);
 
 	}
+
+	
 }

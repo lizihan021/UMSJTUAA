@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_manage extends CI_Model {
+class M_news extends CI_Model {
 
 	public function __construct()
 	{
@@ -29,35 +29,23 @@ class M_manage extends CI_Model {
 *///////////////
 
 	/*
-	** @ $news_info 
-	** Return true or false, insert $news_info into database.
-	** news_info include title content author .....
+	** @ $news_num default as 10
+	** Return $news_num newly posted news. including title, author, post date and ID.
+	** If $news_num is not given, set it default as 10.
 	*/
-	public function write_news_info($news_info)
+	public function get_news_info($news_num)
 	{
 		//TODO//
 	}
 
 	/*
-	** @ $news_info 
-	** Return true or false, insert $news_info into database.
-	** there should be ID in news_info and the news with 
-	** corresponding ID should be updated. If no ID matches
-	** return false. 
+	** @ $ID default as 0
+	** Return all the data of a news with id = $ID.
 	*/
-	public function modefy_news_info($news_info)
+	public function get_news($ID)
 	{
 		//TODO//
 	}
 
-	/*
-	** @ $news_info 
-	** Return true or false, insert $news_info into database.
-	** news_info include ID. If no ID matches return false. 
-	** update ID?
-	*/
-	public function delete_news($news_info)
-	{
-		//TODO//
-	}
+
 }
