@@ -6,7 +6,6 @@ class M_login extends CI_Model {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->database();
 	}
 
 	public function get_site_name()
@@ -20,9 +19,10 @@ class M_login extends CI_Model {
 		}
 		$test = $query->result()[1]->value;
 		return $test;
-		*/
+		
 		$query = $this->db->get_where('aa_site_info', array('item' => 'site_name'));
 
 		return $query->result()[0]->value;
+		*/
 	}
 }

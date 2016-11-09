@@ -5,12 +5,10 @@ class Manage extends CI_Controller {
 
 	public function __construct()
 	{
-		session_start();
-		if(!isset($_SESSION['user'])){
-			header("Location:/login");
-		}
 		parent::__construct();
-
+		if(!isset($_SESSION['user'])){
+			header("Location:/login?url=".base64_encode($_SERVER["REQUEST_URI"]));
+		}
 		$this->load->model('m_manage');
 		
 		$this->output->enable_profiler(TRUE);
@@ -18,7 +16,7 @@ class Manage extends CI_Controller {
 
 	public function index()
 	{
-		$data["test_data"] = "yo!";
+		$data["test_data"] = $_SERVER["REQUEST_URI"];
 		$this->load->view("test", $data);
 
 	}

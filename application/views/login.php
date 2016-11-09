@@ -16,8 +16,7 @@
 
 <div class="container">
     <img src="/bs/img/login.jpg" class="img-responsive" alt="SAA Logo">
-    
-        <?php echo form_open(base_url('login/test?url='.$url), 'class="form-signin"');?>
+        <form action="/login/test?url= <?php echo $url; ?>" class="form-signin" method="post" accept-charset="utf-8">
         <div class="box">
         <label for="inputID" class="sr-only">Student ID</label>
         <input type="text" name="username" class="form-control" placeholder="Student ID" required autofocus>
