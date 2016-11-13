@@ -10,12 +10,12 @@ body {
     padding: 10px;
 }
 
-.container img{
-    max-width: 330px;
+#limit {
     display: block;
     margin: 0 auto;
     padding: 15px;
     padding-bottom: 1%;
+    max-width: 330px;
 }
 
 .form-signin {
