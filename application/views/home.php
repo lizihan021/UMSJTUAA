@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="col-sm-3">
       <h3>Column 3</h3> 
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <p><a href="/manage">Manage Page</a></p>
     </div>
     <div class="col-sm-3">
       <h3>Column 4</h3> 
