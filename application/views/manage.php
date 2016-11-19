@@ -15,44 +15,76 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="/bs/js/bootstrap.min.js"></script>
 
     <!-- Editor -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/editor/css/froala_editor.css">
-  <link rel="stylesheet" href="/editor/css/froala_style.css">
-  <link rel="stylesheet" href="/editor/css/plugins/code_view.css">
-  <link rel="stylesheet" href="/editor/css/plugins/colors.css">
-  <link rel="stylesheet" href="/editor/css/plugins/emoticons.css">
-  <link rel="stylesheet" href="/editor/css/plugins/image_manager.css">
-  <link rel="stylesheet" href="/editor/css/plugins/image.css">
-  <link rel="stylesheet" href="/editor/css/plugins/line_breaker.css">
-  <link rel="stylesheet" href="/editor/css/plugins/table.css">
-  <link rel="stylesheet" href="/editor/css/plugins/char_counter.css">
-  <link rel="stylesheet" href="/editor/css/plugins/video.css">
-  <link rel="stylesheet" href="/editor/css/plugins/fullscreen.css">
-  <link rel="stylesheet" href="/editor/css/plugins/file.css">
-  <link rel="stylesheet" href="/editor/css/plugins/quick_insert.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
-  <style>
-      div#editor {
-          width: 91%;
-          margin: auto;
-          text-align: left;
-      }
-  </style>
+		<link rel="stylesheet" href="/bs/aa_style/manage.css" />
+		<link rel="stylesheet" href="/editor/themes/default/default.css" />
+		<script charset="utf-8" src="/editor/kindeditor-min.js"></script>
+		<script charset="utf-8" src="/editor/lang/zh_CN.js"></script>
+		<script>
+			var editor;
+			KindEditor.ready(function(K) {
+				editor = K.create('textarea[name="content"]', {
+					allowFileManager : true,
+					width : '100%'
+				});
+				K('input[id=getHtml]').click(function(e) 
+				{
+					//alert(editor.html());
+					var content = editor.html();
+					content = content.replace(',', '&cedil;');
+					$.ajax
+				    ({
+						type: 'POST',
+						url: '/manage/save',
+						data:
+						{
+							content: content
+						},
+						success: function(data)
+						{
+							//alert(data);
+						},
+						error: function()
+						{
+							alert('发送失败');
+						},
+						dataType: 'text'
+					});
+				});
+				K('input[name=clear]').click(function(e) {
+					editor.html('');
+				});
+
+			});
+
+
+		</script>
+
 
 </head>
 <body>
-
 <div class="jumbotron text-center">
   <h1><?php echo $page_name; ?></h1>
   <p>This is the <?php echo $discription; ?> page of SAA Website</p> 
 </div>
-<div id="editor">
-      <div id='edit' style="margin-top: 30px;">
-        <h1>Full Featured</h1>
-        <p>This is the full featured Froala WYSIWYG HTML editor.</p>
-      </div>
-</div>
+
+		
+
 <div class="container">
+  <div class="row">
+  		<div class="col-sm-12">
+			<textarea name="content" id="editor">KindEditor</textarea>
+  		</div>
+  </div>
+  <div class="row">
+  <div class="col-sm-12">
+  	<h3>
+  		<input type="button" class="btn btn-primary" id="getHtml" value="提交" />
+		<input type="button" class="btn btn-danger" name="clear" value="清空" />
+	</h3>
+  </div>
+  </div>
+
+
   <div class="row">
     <div class="col-sm-3">
       <h3>Column 1</h3>
@@ -83,47 +115,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
-
-  <script type="text/javascript" src="/editor/js/froala_editor.min.js" ></script>
-  <script type="text/javascript" src="/editor/js/plugins/align.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/char_counter.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/code_beautifier.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/code_view.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/colors.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/draggable.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/emoticons.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/entities.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/file.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/font_size.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/font_family.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/fullscreen.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/image.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/image_manager.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/line_breaker.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/inline_style.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/link.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/lists.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/paragraph_format.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/paragraph_style.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/quick_insert.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/quote.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/table.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/save.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/url.min.js"></script>
-  <script type="text/javascript" src="/editor/js/plugins/video.min.js"></script>
-
-
-  <script>
-  $(function() {
-    $('#edit').froalaEditor({
-      // Set the image upload URL.
-      imageUploadURL: '/manage/upload_image'
-    })
-  });
-  </script>
 
 </body>
 </html>
