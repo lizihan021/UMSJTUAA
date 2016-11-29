@@ -15,6 +15,7 @@ class Home extends CI_Controller {
 	{
 
 		$data['test_data'] = $this->m_home->get_site_name();
+		$data['news'] = $this->m_home->get_news_info();
 		$this->load->view('home', $data);
 
 

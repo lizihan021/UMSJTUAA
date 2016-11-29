@@ -26,31 +26,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					allowFileManager : true,
 					width : '100%'
 				});
-				K('input[id=getHtml]').click(function(e) 
+				K('button[id=getHtml]').click(function(e) 
 				{
-					//alert(editor.html());
+					var title = $("#title").val();
 					var content = editor.html();
-					content = content.replace(',', '&cedil;');
-					$.ajax
-				    ({
-						type: 'POST',
-						url: '/manage/save',
-						data:
-						{
-							content: content
-						},
-						success: function(data)
-						{
-							alert(data);
-						},
-						error: function()
-						{
-							alert('发送失败');
-						},
-						dataType: 'text'
-					});
+					if(title == '' || content == '')
+					{
+						alert("Title or content is empty, submission FAIL");
+					}
+					else
+					{
+						content = content.replace(',', '&cedil;');
+						$.ajax
+					    ({
+							type: 'POST',
+							url: '/manage/save',
+							data:
+							{
+								title  : title,
+								content: content
+							},
+							success: function(data)
+							{
+								alert('发送成功');
+							},
+							error: function()
+							{
+								alert('发送失败');
+							},
+							dataType: 'text'
+						});
+					}
 				});
-				K('input[name=clear]').click(function(e) {
+				K('button[name=clear]').click(function(e) {
 					editor.html('');
 				});
 
@@ -61,32 +69,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 </head>
-<body>
-<div class="jumbotron text-center">
-  <h1><?php echo $page_name; ?></h1>
-  <p>This is the <?php echo $discription; ?> page of SAA Website</p> 
-</div>
-
-		
+<body>	
 
 <div class="container">
+<div class="row">
+	<div class="col-sm-12" align="center">
+		<h2>Edit News</h2>
+	</div>
+</div>
+<div class="form-group">
+  <label for="title">标题:</label>
+  <input type="text" class="form-control" id="title" placeholder="title">
+</div>
   <div class="row">
   		<div class="col-sm-12">
+  			<label for="editor">正文:</label>
 			<textarea name="content" id="editor">KindEditor</textarea>
   		</div>
   </div>
   <div class="row">
   <div class="col-sm-12">
   	<h3>
-  		<input type="button" class="btn btn-primary" id="getHtml" value="提交" />
-		<input type="button" class="btn btn-danger" name="clear" value="清空" />
+  		<button class="btn btn-primary" id="getHtml"> 提交
+  		<span class="glyphicon glyphicon-arrow-up"></span>
+  		</button>
+		<span>&nbsp;</span>
+		<button class="btn btn-danger" name="clear" > 清空
+		<span class="glyphicon glyphicon-remove"></span>
+		</button>
 	</h3>
   </div>
   </div>
 
 
   <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-6">
       <h3>Column 1</h3>
       <p>This is a demo of how to use Bootstrap to creat responsive website.</p>
       <p>The meaningless word on column 2, 3, 4 are lorem ipsum to let you focus on the alinement of the words.</p>

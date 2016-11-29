@@ -31,9 +31,12 @@ class M_home extends CI_Model {
 	** Return $news_num newly posted news. including title, author, post date and ID.
 	** If $news_num is not given, set it default as 10.
 	*/
-	public function get_news_info($news_num)
+	public function get_news_info($news_num = 10)
 	{
 		//TODO//
+		$sql = 'SELECT `title` FROM `aa_news`';
+		$query = $this->db->query($sql);
+		return $query->result();
 	}
 
 	/*
