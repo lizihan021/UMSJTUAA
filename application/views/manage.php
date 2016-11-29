@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						},
 						success: function(data)
 						{
-							//alert(data);
+							alert(data);
 						},
 						error: function()
 						{

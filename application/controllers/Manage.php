@@ -9,7 +9,7 @@ class Manage extends CI_Controller {
 		if(!isset($_SESSION['user'])){
 			header("Location:/login?url=".base64_encode($_SERVER["REQUEST_URI"]));
 		}
-		//$this->load->model('m_manage');
+		$this->load->model('m_manage');
 		$this->output->enable_profiler(TRUE);
 	}
 
@@ -22,8 +22,20 @@ class Manage extends CI_Controller {
 
 	public function save()
 	{
-		$data = $this->input->post('content');
-		echo $data;
+		$content = $this->input->post('content');
+		$news_info = array('title' => 'yo',
+						   'content' => $content );
+		$this->m_manage->write_news_info($news_info);
+		/*
+		if($this->m_manage->write_news_info($news_info))
+		{
+			echo "success";
+		}
+		else
+		{
+			echo "error";
+		}
+		*/
 	}
 
 }

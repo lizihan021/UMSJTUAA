@@ -31,11 +31,14 @@ class M_manage extends CI_Model {
 	/*
 	** @ $news_info 
 	** Return true or false, insert $news_info into database.
-	** news_info include title content author .....
+	** news_info include title content.
 	*/
 	public function write_news_info($news_info)
 	{
 		//TODO//
+		$sql = "INSERT INTO `aa_news`(`title`, `content`) VALUES ('".$news_info['title']."','".$news_info['content']."')";
+		$query = $this->db->query($sql);
+		return true;
 	}
 
 	/*
