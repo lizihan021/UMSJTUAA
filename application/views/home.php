@@ -29,7 +29,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <?php 
         foreach ($news as $news_item)
         {
-          echo '<a href="#" class="list-group-item list-group-item-action">';
+          echo '<a href="/news/index/'.$news_item->id;
+          echo '" class="list-group-item list-group-item-action">';
           echo '<h5 class="list-group-item-heading">'.$news_item->title.'</h5>';
           echo '</a>';
         }

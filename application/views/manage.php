@@ -103,7 +103,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-3">
       <h3>Column 1</h3>
       <p>This is a demo of how to use Bootstrap to creat responsive website.</p>
       <p>The meaningless word on column 2, 3, 4 are lorem ipsum to let you focus on the alinement of the words.</p>
