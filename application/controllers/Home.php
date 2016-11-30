@@ -6,7 +6,7 @@ class Home extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('m_news');
+		$this->load->model('m_home');
 		$this->load->helper('url');
 		$this->output->enable_profiler(TRUE);
 	}
@@ -14,7 +14,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
 
-		$data['test_data'] = $this->m_news->get_site_name();
+		$data['test_data'] = $this->m_home->get_site_name();
 		$this->load->view('home', $data);
 
 
