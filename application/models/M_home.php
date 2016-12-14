@@ -34,7 +34,7 @@ class M_home extends CI_Model {
 	public function get_news_info($news_num = 10)
 	{
 		//TODO//
-		$sql = 'SELECT `title`, `id` FROM `aa_news`';
+		$sql = 'SELECT `title`, `id` FROM `aa_news` ORDER BY `id` DESC';
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
