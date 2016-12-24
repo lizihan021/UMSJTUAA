@@ -24,16 +24,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			KindEditor.ready(function(K) {
 				editor = K.create('textarea[name="content"]', {
 					allowFileManager : true,
-					width : '100%'
+					width : '100%',
+					items : [
+						'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'code', 'cut', 'copy', 'paste',
+    				    'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+   					     'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+   					     'superscript', 'clearhtml', '/',
+   					     'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+   					     'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+   					     'table', 'hr', 'emoticons', 'baidumap', 'link', 'unlink'
+						]
+				});
+				K.ctrl(document.body, 'q', function() {
+			        alert('ctrl + s');
+			        //$('button[id=getHtml]').click();
 				});
 				K('button[id=getHtml]').click(function(e) 
 				{
 					var title = $("#title").val();
 					var content = editor.html();
-					if(title == '' || content == '')
-					{
-						alert("Title or content is empty, submission FAIL");
-					}
+					if(title == '')
+						alert("Title is empty, submission FAIL");
+					else if(content == '')
+						alert("Content is empty, submission FAIL");
 					else
 					{
 						content = content.replace(',', '&cedil;');
@@ -78,23 +91,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </div>
 <div class="form-group">
-  <label for="title">标题:</label>
+  <label for="title">Title:</label>
   <input type="text" class="form-control" id="title" placeholder="title">
 </div>
   <div class="row">
   		<div class="col-sm-12">
-  			<label for="editor">正文:</label>
-			<textarea name="content" id="editor">KindEditor</textarea>
+  			<label for="editor">News:</label>
+			<textarea name="content" id="editor">Edit Here</textarea>
   		</div>
   </div>
   <div class="row">
   <div class="col-sm-12">
   	<h3>
-  		<button class="btn btn-primary" id="getHtml"> 提交
+  		<button class="btn btn-primary" id="getHtml"> Submit
   		<span class="glyphicon glyphicon-arrow-up"></span>
   		</button>
 		<span>&nbsp;</span>
-		<button class="btn btn-danger" name="clear" > 清空
+		<button class="btn btn-danger" name="clear" > Clear
 		<span class="glyphicon glyphicon-remove"></span>
 		</button>
 	</h3>
