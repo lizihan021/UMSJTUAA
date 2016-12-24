@@ -33,11 +33,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
    					     'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
    					     'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
    					     'table', 'hr', 'emoticons', 'baidumap', 'link', 'unlink'
-						]
-				});
-				K.ctrl(document.body, 'q', function() {
-			        alert('ctrl + s');
-			        //$('button[id=getHtml]').click();
+						],
+					afterCreate : function() { 
+						var self = this;
+						K.ctrl(document, 13, function() {
+							K('button[id=getHtml]').click();
+						});
+						K.ctrl(self.edit.doc, 13, function() {
+							K('button[id=getHtml]').click();
+						});
+						K.ctrl(document, 'q', function() {
+							K('button[name=clear]').click();
+						});
+						K.ctrl(self.edit.doc, 'q', function() {
+							K('button[name=clear]').click();
+						});
+					}
 				});
 				K('button[id=getHtml]').click(function(e) 
 				{
@@ -61,11 +72,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							},
 							success: function(data)
 							{
-								alert('发送成功');
+								alert('Success');
 							},
 							error: function()
 							{
-								alert('发送失败');
+								alert('FAIL due to unknown error');
 							},
 							dataType: 'text'
 						});
@@ -74,7 +85,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				K('button[name=clear]').click(function(e) {
 					editor.html('');
 				});
-
 			});
 
 
@@ -103,11 +113,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="row">
   <div class="col-sm-12">
   	<h3>
-  		<button class="btn btn-primary" id="getHtml"> Submit
+  		<button class="btn btn-primary" id="getHtml"> Submit (Ctrl + Enter)
   		<span class="glyphicon glyphicon-arrow-up"></span>
   		</button>
 		<span>&nbsp;</span>
-		<button class="btn btn-danger" name="clear" > Clear
+		<button class="btn btn-danger" name="clear" > Clear (Ctrl + q)
 		<span class="glyphicon glyphicon-remove"></span>
 		</button>
 	</h3>
