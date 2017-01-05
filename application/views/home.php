@@ -18,8 +18,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div class="jumbotron text-center">
-  <h1>SAA Website</h1>
-  <p>This is the home page of SAA Website</p> 
+      <h1>SAA Website</h1>
+      <p>This is the home page of SAA Website</p> 
 </div>
 <div class="container">
   <div class="row">

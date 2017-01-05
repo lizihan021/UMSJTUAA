@@ -52,7 +52,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				});
 				K('button[id=getHtml]').click(function(e) 
 				{
+					if (editor.count('text') > 100000)
+					{
+						alert("Content length over limit");
+						return;
+					}
 					var title = $("#title").val();
+					
+					if (title.length > 200)
+					{
+						alert("Title length over limit");
+						return;
+					}
 					var content = editor.html();
 					if(title == '')
 						alert("Title is empty, submission FAIL");
@@ -60,7 +71,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						alert("Content is empty, submission FAIL");
 					else
 					{
-						content = content.replace(',', '&cedil;');
+						content = content.replace(/'/g, '\"');
+						content = content.replace(/,/g, '&cedil;');
 						$.ajax
 					    ({
 							type: 'POST',
