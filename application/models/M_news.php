@@ -37,6 +37,7 @@ class M_news extends CI_Model {
 		$sql = 'SELECT * FROM `aa_news` WHERE id='.$news_id;
 		$query = $this->db->get_where('aa_news', array('id' => $news_id));
 		return $query->result()[0];
+		//
 	}
 
 	/*
