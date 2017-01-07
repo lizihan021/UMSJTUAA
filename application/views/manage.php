@@ -24,36 +24,79 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			KindEditor.ready(function(K) {
 				editor = K.create('textarea[name="content"]', {
 					allowFileManager : true,
-					width : '100%'
+					width : '100%',
+					items : [
+						'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'code', 'cut', 'copy', 'paste',
+    				    'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+   					     'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+   					     'superscript', 'clearhtml', '/',
+   					     'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+   					     'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+   					     'table', 'hr', 'emoticons', 'baidumap', 'link', 'unlink'
+						],
+					afterCreate : function() { 
+						var self = this;
+						K.ctrl(document, 13, function() {
+							K('button[id=getHtml]').click();
+						});
+						K.ctrl(self.edit.doc, 13, function() {
+							K('button[id=getHtml]').click();
+						});
+						K.ctrl(document, 'q', function() {
+							K('button[name=clear]').click();
+						});
+						K.ctrl(self.edit.doc, 'q', function() {
+							K('button[name=clear]').click();
+						});
+					}
 				});
-				K('input[id=getHtml]').click(function(e) 
+				K('button[id=getHtml]').click(function(e) 
 				{
-					//alert(editor.html());
+					if (editor.count('text') > 100000)
+					{
+						alert("Content length over limit");
+						return;
+					}
+					var title = $("#title").val();
+					
+					if (title.length > 200)
+					{
+						alert("Title length over limit");
+						return;
+					}
 					var content = editor.html();
-					content = content.replace(',', '&cedil;');
-					$.ajax
-				    ({
-						type: 'POST',
-						url: '/manage/save',
-						data:
-						{
-							content: content
-						},
-						success: function(data)
-						{
-							alert(data);
-						},
-						error: function()
-						{
-							alert('发送失败');
-						},
-						dataType: 'text'
-					});
+					if(title == '')
+						alert("Title is empty, submission FAIL");
+					else if(content == '')
+						alert("Content is empty, submission FAIL");
+					else
+					{
+						content = content.replace(/'/g, '\"');
+						content = content.replace(/,/g, '&cedil;');
+						$.ajax
+					    ({
+							type: 'POST',
+							url: '/manage/save',
+							data:
+							{
+								title  : title,
+								content: content
+							},
+							success: function(data)
+							{
+								alert('Success');
+							},
+							error: function()
+							{
+								alert('FAIL due to unknown error');
+							},
+							dataType: 'text'
+						});
+					}
 				});
-				K('input[name=clear]').click(function(e) {
+				K('button[name=clear]').click(function(e) {
 					editor.html('');
 				});
-
 			});
 
 
@@ -61,25 +104,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 </head>
-<body>
-<div class="jumbotron text-center">
-  <h1><?php echo $page_name; ?></h1>
-  <p>This is the <?php echo $discription; ?> page of SAA Website</p> 
-</div>
-
-		
+<body>	
 
 <div class="container">
+<div class="row">
+	<div class="col-sm-12" align="center">
+		<h2>Edit News</h2>
+	</div>
+</div>
+<div class="form-group">
+  <label for="title">Title:</label>
+  <input type="text" class="form-control" id="title" placeholder="title">
+</div>
   <div class="row">
   		<div class="col-sm-12">
-			<textarea name="content" id="editor">KindEditor</textarea>
+  			<label for="editor">News:</label>
+			<textarea name="content" id="editor">Edit Here</textarea>
   		</div>
   </div>
   <div class="row">
   <div class="col-sm-12">
   	<h3>
-  		<input type="button" class="btn btn-primary" id="getHtml" value="提交" />
-		<input type="button" class="btn btn-danger" name="clear" value="清空" />
+  		<button class="btn btn-primary" id="getHtml"> Submit (Ctrl + Enter)
+  		<span class="glyphicon glyphicon-arrow-up"></span>
+  		</button>
+		<span>&nbsp;</span>
+		<button class="btn btn-danger" name="clear" > Clear (Ctrl + q)
+		<span class="glyphicon glyphicon-remove"></span>
+		</button>
 	</h3>
   </div>
   </div>

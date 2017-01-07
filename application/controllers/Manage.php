@@ -23,7 +23,12 @@ class Manage extends CI_Controller {
 	public function save()
 	{
 		$content = $this->input->post('content');
-		$news_info = array('title' => 'yo',
+		$title = $this->input->post('title');
+		if (strlen($title) > 200 || strlen($content) > 100000)
+			return;
+		//过滤html标签
+		$title = strip_tags($title); 
+		$news_info = array('title' => $title,
 						   'content' => $content );
 		$this->m_manage->write_news_info($news_info);
 		/*

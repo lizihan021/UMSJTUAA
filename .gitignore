@@ -1,5 +1,9 @@
 .DS_Store
 
+*.sql
+
+test.html
+
 application/cache/*
 !application/cache/index.html
 !application/cache/.htaccess
@@ -11,6 +15,9 @@ application/logs/*
 application/config/database.php
 
 editor/attached/*
+!editor/attached/index.html
+!editor/attached/image/index.html
+
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
 user_guide_src/cilexer/dist/*

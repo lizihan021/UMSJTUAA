@@ -18,21 +18,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div class="jumbotron text-center">
-  <h1>SAA Website</h1>
-  <p>This is the home page of SAA Website</p> 
+      <h1>SAA Website</h1>
+      <p>This is the home page of SAA Website</p> 
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-sm-3">
-      <h3>Column 1</h3>
-      <p>This is a demo of how to use Bootstrap to creat responsive website.</p>
-      <p>The meaningless word on column 2, 3, 4 are lorem ipsum to let you focus on the alinement of the words.</p>
-    </div>
-    <div class="col-sm-3">
-      <h3>Column 2</h3>
-      <p>Here should be the name of each departments...</p>
-      <p>Here are discription and links...</p>
-    </div>
+    <div class="col-sm-6">
+    <label for="news">News:</label>
+      <div class="list-group" id="news">
+      <?php 
+        foreach ($news as $news_item)
+        {
+          echo '<a href="/news/index/'.$news_item->id;
+          echo '" class="list-group-item list-group-item-action">';
+          echo '<h5 class="list-group-item-heading">'.$news_item->title.'</h5>';
+          echo '</a>';
+        }
+      ?>
+      </div>
+  </div>
     <div class="col-sm-3">
       <h3>Column 3</h3> 
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
@@ -45,6 +49,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
   </div>
 </div>
-
 </body>
+
 </html>
