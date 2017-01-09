@@ -84,7 +84,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							},
 							success: function(data)
 							{
-								alert('Success');
+								var innerhtml = '<div id="'+data+'" style="display:none">';
+								innerhtml += '<a data-toggle="collapse" href="#collapse'+data;
+								innerhtml += '" class="list-group-item list-group-item-action"><h5 class="list-group-item-heading">'+title;
+								innerhtml += '</h5></a><div id="collapse'+data;
+								innerhtml += '" class="panel-collapse collapse"><a href="/news/index/'+data;
+								innerhtml += '" type="button" class="btn btn-link">Read more</a><button type="button" class="btn btn-danger" name="'+data;
+								innerhtml += '" onclick="newsDelete('+data;
+								innerhtml += ')">delete</button></div></div>';
+
+								$("#newinsert").after(innerhtml);
+
+             					$("#"+data).slideDown();
+
 							},
 							error: function()
 							{
@@ -111,8 +123,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					},
 					success: function(data)
 					{
-						alert('Successfully deleted');
-						$("#"+id).hide();
+						$("#"+id).fadeTo("fast", 0.01, function(){ //fade
+             				$(this).slideUp("normal", function() { //slide up
+                 			$(this).remove(); //then remove from the DOM
+             			});
+         });
 					},
 					error: function()
 					{
@@ -165,11 +180,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </div>
 <div class="list-group" id="news">
+	<div id="newinsert"></div>
 	<?php 
 	foreach ($news as $news_item)
 	{
 		echo '<div id="'.$news_item->id.'">';
-		echo '<a data-toggle="collapse" href="#collapse'.$news_item->id.'" ';
+		echo '<a data-toggle="collapse" href="#collapse'.$news_item->id;
 		echo '" class="list-group-item list-group-item-action">';
 		echo '<h5 class="list-group-item-heading">'.$news_item->title.'</h5>';
 		echo '</a>';
@@ -181,7 +197,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		echo 'Read more</a>';
 
 		echo '<button type="button" class="btn btn-danger" name="'.$news_item->id.'"';
-		echo 'onclick="newsDelete('.$news_item->id.')">';
+		echo ' onclick="newsDelete('.$news_item->id.')">';
 		echo 'delete</button>';
     	echo '</div>';
 

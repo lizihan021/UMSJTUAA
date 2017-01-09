@@ -45,8 +45,10 @@ class M_manage extends CI_Model {
 	{
 		//TODO//
 		$sql = "INSERT INTO `aa_news`(`title`, `content`) VALUES ('".$news_info['title']."','".$news_info['content']."')";
+		$this->db->query($sql);
+		$sql = "SELECT `id` FROM `aa_news` WHERE `title`='".$news_info['title']."'";
 		$query = $this->db->query($sql);
-		return true;
+		return $query->result()[0]->id;
 	}
 
 	/*

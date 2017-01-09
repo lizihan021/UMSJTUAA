@@ -10,7 +10,7 @@ class Manage extends CI_Controller {
 			header("Location:/login?url=".base64_encode($_SERVER["REQUEST_URI"]));
 		}
 		$this->load->model('m_manage');
-		$this->output->enable_profiler(TRUE);
+		//$this->output->enable_profiler(TRUE);
 	}
 
 	public function index()
@@ -32,17 +32,16 @@ class Manage extends CI_Controller {
 		$title = strip_tags($title); 
 		$news_info = array('title' => $title,
 						   'content' => $content );
-		$this->m_manage->write_news_info($news_info);
-		/*
-		if($this->m_manage->write_news_info($news_info))
+		$id="!";
+		$id = $this->m_manage->write_news_info($news_info);
+		if($id!="!")
 		{
-			echo "success";
+			echo $id;
 		}
 		else
 		{
 			echo "error";
 		}
-		*/
 	}
 
 	public function delete()
