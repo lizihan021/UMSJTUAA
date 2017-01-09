@@ -97,18 +97,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				K('button[name=clear]').click(function(e) {
 					editor.html('');
 				});
+
 			});
 
 			function newsDelete(id){
-				alert(id);
 				$.ajax
 			    ({
 					type: 'POST',
 					url: '/manage/delete',
-					data: id,
+					data: 
+					{
+						id: id /////////
+					},
 					success: function(data)
 					{
 						alert('Successfully deleted');
+						$("#"+id).hide();
 					},
 					error: function()
 					{
@@ -116,6 +120,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					},
 					dataType: 'text'
 				});
+			    
 			}
 		</script>
 
@@ -163,6 +168,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php 
 	foreach ($news as $news_item)
 	{
+		echo '<div id="'.$news_item->id.'">';
 		echo '<a data-toggle="collapse" href="#collapse'.$news_item->id.'" ';
 		echo '" class="list-group-item list-group-item-action">';
 		echo '<h5 class="list-group-item-heading">'.$news_item->title.'</h5>';
@@ -177,6 +183,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		echo '<button type="button" class="btn btn-danger" name="'.$news_item->id.'"';
 		echo 'onclick="newsDelete('.$news_item->id.')">';
 		echo 'delete</button>';
+    	echo '</div>';
+
     	echo '</div>';
 
 	}

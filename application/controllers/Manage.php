@@ -47,7 +47,7 @@ class Manage extends CI_Controller {
 
 	public function delete()
 	{
-		$id = $this->input->post;
-		$this->m_manage->delete_news(id);
+		$id = $this->input->post('id'); ///////
+		$this->m_manage->delete_news($id); //////
 	}
 }
