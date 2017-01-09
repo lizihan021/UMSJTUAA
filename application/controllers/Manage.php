@@ -17,6 +17,8 @@ class Manage extends CI_Controller {
 	{
 		$data["page_name"] = substr($_SERVER["REQUEST_URI"], 1, strlen($_SERVER["REQUEST_URI"]));
 		$data["discription"] = $data["page_name"];
+		//added by log
+		$data['news'] = $this->m_manage->get_news_info();
 		$this->load->view("manage", $data);
 	}
 
@@ -43,4 +45,9 @@ class Manage extends CI_Controller {
 		*/
 	}
 
+	public function delete()
+	{
+		$id = $this->input->post('id'); ///////
+		$this->m_manage->delete_news($id); //////
+	}
 }
