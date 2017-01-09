@@ -99,9 +99,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				});
 			});
 
-
+			function newsDelete(id){
+				alert(id);
+				$.ajax
+			    ({
+					type: 'POST',
+					url: '/manage/delete',
+					data: id,
+					success: function(data)
+					{
+						alert('Successfully deleted');
+					},
+					error: function()
+					{
+						alert('FAIL due to unknown error');
+					},
+					dataType: 'text'
+				});
+			}
 		</script>
 
+	
 
 </head>
 <body>	
@@ -135,7 +153,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</h3>
   </div>
   </div>
+<!-- News List -->
+<div class="row">
+	<div class="col-sm-12" align="center">
+		<h2>News List</h2>
+	</div>
+</div>
+<div class="list-group" id="news">
+	<?php 
+	foreach ($news as $news_item)
+	{
+		echo '<a data-toggle="collapse" href="#collapse'.$news_item->id.'" ';
+		echo '" class="list-group-item list-group-item-action">';
+		echo '<h5 class="list-group-item-heading">'.$news_item->title.'</h5>';
+		echo '</a>';
+		
+		echo '<div id="collapse'.$news_item->id.'" class="panel-collapse collapse">';
+		
+		echo '<a href="/news/index/'.$news_item->id;
+		echo '" type="button" class="btn btn-link">';
+		echo 'Read more</a>';
 
+		echo '<button type="button" class="btn btn-danger" name="'.$news_item->id.'"';
+		echo 'onclick="newsDelete('.$news_item->id.')">';
+		echo 'delete</button>';
+    	echo '</div>';
+
+	}
+	?>
+</div>
 
   <div class="row">
     <div class="col-sm-3">
